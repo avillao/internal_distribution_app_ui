@@ -1,0 +1,25 @@
+.alertContainer {
+    background-color: #f96b851a;
+    border-left: 4px solid #f96b85;
+    /* position: absolute;
+    top: 10;
+    right: 10;*/
+} 
+
+.alertContainer i {
+    color: #f96b85;
+}
+
+.alertTextContent{
+    font-family: 'Inter';
+}
+
+.alertTextContent p:first-child {
+    font-size: 12px;
+    color: #a92e4a;
+}
+
+.alertTextContent p:nth-child(2) {
+    font-size: 11px;
+    color: #43493acc;
+}
