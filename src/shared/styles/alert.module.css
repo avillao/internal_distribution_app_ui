@@ -1,25 +1,73 @@
 .alertContainer {
-    background-color: #f96b851a;
-    border-left: 4px solid #f96b85;
-    /* position: absolute;
-    top: 10;
-    right: 10;*/
-} 
+    height: 68px;
+}
+
+.alertContainer > div {
+    height: 100%;
+}
+
+.alertContainer p {
+    line-height: 16px !important;
+}
 
 .alertContainer i {
-    color: #f96b85;
+    font-size: 24px;
+    line-height: 24px;
 }
 
 .alertTextContent{
     font-family: 'Inter';
 }
 
-.alertTextContent p:first-child {
+.alertTextContent p:nth-child(2) {
+    font-size: 11px;
+    color: #43493acc;
+}
+
+/* Alert error */
+
+.alertError {
+    background-color: #f96b851a;
+    border-left: 4px solid #f96b85;
+} 
+
+.alertError i {
+    color: #f96b85;
+}
+
+.alertError .alertTextContent p:first-child {
     font-size: 12px;
     color: #a92e4a;
 }
 
-.alertTextContent p:nth-child(2) {
-    font-size: 11px;
-    color: #43493acc;
+/* Alert warning */
+
+.alertWarning {
+    background-color: #ffd4781a;
+    border-left: 4px solid #ffd478;
+}
+
+.alertWarning i {
+    color: #775802;
+}
+
+.alertWarning .alertTextContent p:first-child {
+    font-size: 12px;
+    color: #775802;
+}
+
+/* Alert warning */
+
+.alertSuccess {
+    background-color: #b2e6721a;
+    border-left: 4px solid #b2e672;
+}
+
+.alertSuccess i {
+    color: #406900;
+}
+
+.alertSuccess .alertTextContent p:first-child {
+    font-size: 12px;
+    color: #3f6700;
 }

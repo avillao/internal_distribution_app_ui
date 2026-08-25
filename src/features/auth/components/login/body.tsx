@@ -3,31 +3,24 @@ import { loginSchemaValidator } from "@/features/auth/validators/loginSchema";
 import Style from "@/features/auth/styles/login.module.css";
 import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import { useAuth } from "@/features/auth/hooks/useAuth";
-import { useToast } from "@/shared/hooks/useToast";
-import { Toast, ToastContainer } from "react-bootstrap";
-import { Alert } from "@/shared/components/alert";
+import { useAlert } from "@/shared/hooks/useAlert";
 import { useEffect } from "react";
+import { AlertType } from "@/shared/enums/components";
 
 function LoginBody () {
     const { isLoading, login, error} = useAuth();
-    const { showToast, setShowToast } = useToast();
+    const { setShowAlert, RenderAlert } = useAlert();
 
     useEffect(()=>{
         if(error){
-            setShowToast(true);
+            setShowAlert(true);
         }
     }, [error]);
 
     
     return(
         <div className={Style.bodyContainer}>
-            <ToastContainer position="top-end" className="p-3">
-                <Toast show={showToast} onClose={() => setShowToast(false)} autohide delay={3000}>
-                <Toast.Body>
-                    <Alert title="Error" subtitle={error}></Alert>
-                </Toast.Body>
-                </Toast>
-            </ToastContainer>
+            <RenderAlert type={AlertType.ERROR} message={error ?? ""} />
             <Formik
                 initialValues={{username:"", password: ""}}
                 validate={loginSchemaValidator}

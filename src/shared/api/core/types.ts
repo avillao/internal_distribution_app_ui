@@ -1,4 +1,4 @@
-export type ResponseDTO<T> = {
+export interface ResponseDTO<T> {
     message: string;
     status: number;
     error: string;

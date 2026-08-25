@@ -1,6 +1,6 @@
 import { FormikValues } from "formik";
 
-export type LoginResponse = {
+export interface LoginResponse {
     access_token: string;
     expires_in: number;
     token_type: string;
@@ -8,7 +8,7 @@ export type LoginResponse = {
     refresh_expires_in: number;
 }
 
-export type LoginModel = {
+export interface LoginModel {
     username?: string;
     password?: string;
 }
