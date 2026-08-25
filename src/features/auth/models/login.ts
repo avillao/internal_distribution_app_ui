@@ -1,3 +1,5 @@
+import { FormikValues } from "formik";
+
 export type LoginResponse = {
     access_token: string;
     expires_in: number;
@@ -7,6 +9,6 @@ export type LoginResponse = {
 }
 
 export type LoginModel = {
-    email?: string;
+    username?: string;
     password?: string;
 }

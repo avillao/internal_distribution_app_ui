@@ -1,7 +1,7 @@
 "use client"
 import { loginSchemaValidator } from "@/features/auth/validators/loginSchema";
 import Style from "@/features/auth/styles/login.module.css";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useToast } from "@/shared/hooks/useToast";
 import { Toast, ToastContainer } from "react-bootstrap";
@@ -29,23 +29,22 @@ function LoginBody () {
                 </Toast>
             </ToastContainer>
             <Formik
-                initialValues={{email:"", password: ""}}
+                initialValues={{username:"", password: ""}}
                 validate={loginSchemaValidator}
-                onSubmit={(values)=> login(values.email, values.password, "/")}
-                //onSubmit={()=>setShowToast(true)}
+                onSubmit={(values)=> login(values.username, values.password, "/")}
             >
                 {({isValid, isSubmitting})=> (
                     <Form>
                         <div className="input-group">
                             <div>
-                                <label>Email</label>
+                                <label>Username</label>
                             </div>
                             <Field
-                                type="text" 
-                                name="email" 
+                                type="text"
+                                name="username"
                                 placeholder="name@company.com"
                             />
-                            <ErrorMessage name="email" component="div" />
+                            <ErrorMessage name="username" component="div" />
                         </div>
                         <div className="input-group">
                             <div>

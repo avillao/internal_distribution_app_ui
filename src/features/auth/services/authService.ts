@@ -17,7 +17,12 @@ export class AuthService {
     }
 
     async login(username: string, password: string){
-        const res: AxiosResponse<ResponseDTO<LoginResponse>> = await authClient.post('/auth/login', { username, password });
+        const params = new URLSearchParams({ username, password });
+
+        const res: AxiosResponse<ResponseDTO<LoginResponse>> = await authClient.post(
+            '/auth/login', 
+            params
+        );
 
         if(res.status != 200){
             throw new Error("Error de inicio de sesion");   
