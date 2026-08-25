@@ -1,14 +1,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bs-link-hover-color: #4D7C0F !important;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #ededed;    
   }
-}
+} */
 
 html {
   height: 100%;

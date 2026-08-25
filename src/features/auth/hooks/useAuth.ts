@@ -1,14 +1,12 @@
 import { AuthService } from "@/features/auth/services/authService";
-import { ResponseDTO } from "@/shared/api/core/types";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { LoginResponse } from "../models/login";
+import useStore from "@/shared/hooks/useStore";
 
 const authService = AuthService.prototype.getInstance();
 
 export interface IUseAuth {
-    isAuthenticated: boolean,
     isLoading: boolean,
     login: (username: string, password: string, navigateTo: string) => void,
     logout: ()=> void;
@@ -16,13 +14,14 @@ export interface IUseAuth {
 }
 
 export const useAuth = (): IUseAuth => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const setIsAuthenticated = useStore((state) => state.setIsAuthenticated );
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | undefined>(undefined)
     const router = useRouter();
     
     const login = async (username: string, password: string, navigateTo: string) => {
         setError(undefined);
+        setIsAuthenticated(false);
 
         try{
             setIsLoading(true);
@@ -50,11 +49,9 @@ export const useAuth = (): IUseAuth => {
         setIsLoading(true);
         await authService.logout();
         setIsLoading(false);
-        setIsAuthenticated(false);
     };
 
    return {
-    isAuthenticated,
     isLoading,
     login,
     logout,

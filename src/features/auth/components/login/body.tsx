@@ -24,7 +24,7 @@ function LoginBody () {
             <Formik
                 initialValues={{username:"", password: ""}}
                 validate={loginSchemaValidator}
-                onSubmit={(values)=> login(values.username, values.password, "/")}
+                onSubmit={(values)=> login(values.username, values.password, "/dashboard")}
             >
                 {({isValid, isSubmitting})=> (
                     <Form>
@@ -35,7 +35,6 @@ function LoginBody () {
                             <Field
                                 type="text"
                                 name="username"
-                                placeholder="name@company.com"
                             />
                             <ErrorMessage name="username" component="div" />
                         </div>
