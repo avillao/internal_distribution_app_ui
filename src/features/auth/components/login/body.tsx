@@ -2,7 +2,7 @@
 import { loginSchemaValidator } from "@/features/auth/validators/loginSchema";
 import Style from "@/features/auth/styles/login.module.css";
 import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import useAuth from "@/features/auth/hooks/useAuth";
 import { useAlert } from "@/shared/hooks/useAlert";
 import { useEffect } from "react";
 import { AlertType } from "@/shared/enums/components";

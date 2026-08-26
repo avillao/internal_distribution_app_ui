@@ -13,7 +13,7 @@ export interface IUseAuth {
     error?: string;
 }
 
-export const useAuth = (): IUseAuth => {
+export default function useAuth(): IUseAuth {
     const setIsAuthenticated = useStore((state) => state.setIsAuthenticated );
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | undefined>(undefined)
@@ -21,7 +21,7 @@ export const useAuth = (): IUseAuth => {
     
     const login = async (username: string, password: string, navigateTo: string) => {
         setError(undefined);
-        setIsAuthenticated(false);
+        await logout();
 
         try{
             setIsLoading(true);

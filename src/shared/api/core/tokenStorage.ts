@@ -33,7 +33,6 @@ export const isTokenExpired = () => {
 export const clearTokens = () => {
   accessToken = null;
   refreshToken = null;
-  sessionStorage.removeItem('access_token');
-  sessionStorage.removeItem('refresh_token');
-  sessionStorage.removeItem('expires_at');
+  cookieStore.delete('access_token');
+  cookieStore.delete('refresh_token');
 };
