@@ -6,7 +6,7 @@ import axios from 'axios';
 export const createHttpClient = (baseURL: string) => {
   const client = axios.create({
     baseURL,
-    withCredentials: true,
+    withCredentials: true
   });
 
   // client.interceptors.response.use(

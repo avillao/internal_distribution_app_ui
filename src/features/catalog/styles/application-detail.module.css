@@ -1,0 +1,463 @@
+.detailPage {
+    min-height: calc(100vh - 64px);
+    padding: 32px clamp(22px, 6vw, 90px) 64px;
+    background: #f8f9f6;
+    color: #252824;
+    font-family: var(--font-inter), 'Inter', sans-serif;
+}
+
+.detailShell {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #687265;
+    font-size: 12px;
+    font-weight: 700;
+    transition: color .16s ease;
+}
+
+.backLink:hover {
+    color: #406900;
+}
+
+.applicationHeader {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 30px 0 28px;
+    border-bottom: 1px solid #e6ebe2;
+}
+
+.appIcon {
+    display: grid;
+    width: 76px;
+    height: 76px;
+    flex: 0 0 76px;
+    place-items: center;
+    color: #eff8dc;
+    background: linear-gradient(145deg, #b2e672, #477313);
+    border-radius: 18px 18px 18px 5px;
+    font-family: var(--font-manrope), 'Manrope', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -.08em;
+    box-shadow: 0 8px 18px rgba(65, 105, 0, .12);
+}
+
+.applicationIdentity {
+    min-width: 0;
+    flex: 1;
+}
+
+.kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 9px !important;
+    color: #7b8577;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.kicker span {
+    width: 7px;
+    height: 7px;
+    background: #65a30d;
+    border-radius: 50%;
+}
+
+.applicationIdentity h1 {
+    margin: 0;
+    color: #242823;
+    font-family: var(--font-manrope), 'Manrope', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -.055em;
+}
+
+.applicationCode {
+    margin-top: 7px !important;
+    color: #8c9588;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 11px;
+}
+
+.statusBadge {
+    align-self: center;
+    flex-shrink: 0;
+    padding: 6px 9px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+.active {
+    color: #3d6500;
+    background: #dff5b8;
+}
+
+.inactive {
+    color: #6f746c;
+    background: #eceeea;
+}
+
+.downloadPanel {
+    display: grid;
+    grid-template-columns: .82fr 1.18fr;
+    border: 1px solid #e3e8df;
+    background: #fff;
+    box-shadow: 0 14px 36px rgba(44, 56, 38, .06);
+}
+
+.panelIntro {
+    grid-column: 1;
+    padding: 34px 34px 24px;
+    border-right: 1px solid #edf0eb;
+}
+
+.panelIntro .kicker {
+    margin-bottom: 12px !important;
+}
+
+.panelIntro h2 {
+    margin: 0;
+    color: #2b3128;
+    font-family: var(--font-manrope), 'Manrope', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -.04em;
+}
+
+.panelIntro p:last-child {
+    max-width: 520px;
+    margin-top: 8px !important;
+    color: #6c7569;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.applicationFacts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    grid-column: 1;
+    padding: 22px 34px 30px;
+    border-right: 1px solid #edf0eb;
+    background: #fbfcfa;
+}
+
+.applicationFacts div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.applicationFacts span {
+    color: #9aa297;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.applicationFacts strong,
+.applicationFacts time {
+    color: #3d453b;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 11px;
+}
+
+.selectorGrid {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 26px;
+    padding: 34px 34px 24px;
+}
+
+.selectorGrid fieldset {
+    min-width: 0;
+    padding: 0;
+    border: 0;
+}
+
+.selectorGrid legend,
+.branchSelect>span {
+    display: block;
+    margin-bottom: 12px;
+    color: #7e8979;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.platformChoices {
+    display: flex;
+    gap: 8px;
+}
+
+.platformChoices button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 130px;
+    padding: 13px 14px;
+    border: 1px solid #e3e8df;
+    color: #717a6d;
+    background: #fff;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.platformChoices button>i:first-child {
+    color: #9ba795;
+    font-size: 17px;
+}
+
+.platformChoices button>i:last-child {
+    display: none;
+    margin-left: auto;
+    color: #5e8c18;
+}
+
+.platformChoices button:hover,
+.platformChoices .selectedChoice {
+    border-color: #a9cc72;
+    color: #365600;
+    background: #f5faed;
+}
+
+.platformChoices .selectedChoice>i:first-child {
+    color: #5e8c18;
+}
+
+.platformChoices .selectedChoice>i:last-child {
+    display: block;
+}
+
+.branchSelect {
+    position: relative;
+    display: block;
+}
+
+.branchSelect select {
+    width: 100%;
+    height: 46px;
+    padding: 0 40px 0 13px;
+    border: 1px solid #e3e8df;
+    outline: 0;
+    appearance: none;
+    color: #365600;
+    background: #fff;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.branchSelect select:focus {
+    border-color: #8eb952;
+    box-shadow: 0 0 0 3px #edf6df;
+}
+
+.branchSelect>i {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    color: #78905e;
+    pointer-events: none;
+}
+
+.artifactResult {
+    display: flex;
+    align-items: center;
+    grid-column: 2;
+    gap: 15px;
+    margin: 0 34px 30px;
+    padding: 17px;
+    border: 1px solid #dfe9d3;
+    background: #f7fbf1;
+}
+
+.resultIcon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    place-items: center;
+    color: #507e12;
+    background: #e5f4cc;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.resultInfo {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.resultLabel {
+    color: #8b9982;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.resultInfo strong {
+    color: #2e392a;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 14px;
+}
+
+.resultInfo span:last-child {
+    overflow: hidden;
+    color: #71806a;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.downloadButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border: 0;
+    color: #315200;
+    background: #b2e672;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.downloadButton:hover:not(:disabled) {
+    background: #9bd455;
+}
+
+.downloadButton:disabled {
+    color: #979e94;
+    background: #e9ece7;
+    cursor: not-allowed;
+}
+
+.notice {
+    display: flex;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 8px;
+    padding: 0 34px 20px;
+    color: #8a7250;
+    font-size: 11px;
+}
+
+.notice i {
+    color: #c39346;
+}
+
+@media (max-width: 900px) {
+    .downloadPanel {
+        display: block;
+    }
+
+    .panelIntro {
+        border-right: 0;
+    }
+
+    .applicationFacts {
+        flex-direction: row;
+        gap: 48px;
+        border-right: 0;
+    }
+
+    .selectorGrid {
+        grid-column: auto;
+    }
+
+    .artifactResult {
+        grid-column: auto;
+    }
+
+    .notice {
+        grid-column: auto;
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .detailPage {
+        padding: 26px 16px 42px;
+    }
+
+    .applicationHeader {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 28px 0 24px;
+    }
+
+    .appIcon {
+        width: 62px;
+        height: 62px;
+        flex-basis: 62px;
+        font-size: 20px;
+    }
+
+    .statusBadge {
+        align-self: flex-start;
+        margin-left: 84px;
+        margin-top: -12px;
+    }
+
+    .panelIntro,
+    .applicationFacts,
+    .selectorGrid {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .applicationFacts {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .selectorGrid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .platformChoices button {
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+    }
+
+    .artifactResult {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin: 0 20px 20px;
+    }
+
+    .resultInfo {
+        flex-basis: calc(100% - 58px);
+    }
+
+    .downloadButton {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .notice {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
