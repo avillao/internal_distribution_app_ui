@@ -1,30 +1,201 @@
 .headerContainer {
     width: 100%;
     height: 64px;
-    font-family: 'Manrope', 'Inter', sans-serif;
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid #e8e8e8;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    font-family: var(--font-manrope), 'Manrope', sans-serif;
 }
 
-.headerSectionMenu > div:first-child span {
-    color: #65A30D;
+.headerInner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 0 24px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: #18181b;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.brandMark {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    color: #243500;
+    background: #b2e672;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.navigation {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    gap: 4px;
+    margin-right: auto;
+}
+
+.navLink {
+    display: inline-flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 14px;
+    border-bottom: 2px solid transparent;
+    color: #71717a;
+    font-size: 13px;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
+    transition: color 160ms ease, border-color 160ms ease;
 }
 
-.headerSectionMenu > nav a {
-    color: #71717A;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+.navLink:hover {
+    color: #406900;
 }
 
-.headerSectionMenu > nav [class="active"] {
-    color: #4D7C0F;
-    border-bottom: 2px solid #4D7C0F;
-    box-sizing: border-box;
+.navLink.active {
+    color: #406900;
+    border-bottom-color: #65a30d;
 }
 
-.headerSectionConfig i {
-    font-size: 24px;
-    cursor: pointer;
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 190px;
+    height: 36px;
+    padding: 0 12px;
+    color: #71717a;
+    background: #f3f3f4;
+    border-radius: 8px;
+}
+
+.search input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    color: #18181b;
+    background: transparent;
+    font: inherit;
+    font-size: 12px;
+}
+
+.search input::placeholder {
+    color: #a1a1aa;
+}
+
+.iconButton,
+.profileButton {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    place-items: center;
+    border: 0;
+    color: #71717a;
+    background: transparent;
+    border-radius: 8px;
+    transition: color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.iconButton:hover,
+.profileButton:hover {
+    color: #406900;
+    background: #f3f3f4;
+}
+
+.iconButton:active,
+.profileButton:active {
+    transform: scale(0.94);
+}
+
+.profileButton {
+    margin-left: 4px;
+    color: #2f4f00;
+    background: #b2e672;
+}
+
+.menuButton,
+.mobileNavigation {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .headerInner {
+        gap: 12px;
+        padding: 0 16px;
+    }
+
+    .brandText,
+    .navigation,
+    .iconButton {
+        display: none;
+    }
+
+    .headerActions,
+    .search {
+        flex: 1;
+    }
+
+    .search {
+        width: auto;
+    }
+
+    .menuButton {
+        display: grid;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        place-items: center;
+        border: 0;
+        color: #71717a;
+        background: transparent;
+        border-radius: 8px;
+        font-size: 18px;
+    }
+
+    .mobileNavigation {
+        position: absolute;
+        top: 64px;
+        right: 16px;
+        display: flex;
+        min-width: 148px;
+        flex-direction: column;
+        padding: 6px;
+        background: #ffffff;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        box-shadow: 0 12px 28px rgba(24, 24, 27, 0.12);
+    }
+
+    .mobileNavigation .navLink {
+        height: 40px;
+        border-bottom: 0;
+        border-radius: 6px;
+    }
+
+    .mobileNavigation .navLink:hover,
+    .mobileNavigation .navLink.active {
+        background: #f3f3f4;
+    }
 }

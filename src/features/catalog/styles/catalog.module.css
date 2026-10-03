@@ -1,0 +1,68 @@
+.catalogPage {
+    min-height: calc(100vh - 64px);
+    padding: 54px clamp(22px, 5vw, 72px) 48px;
+    color: #252824;
+    background: #f8f9f6;
+    font-family: var(--font-inter), 'Inter', sans-serif;
+}
+
+.pageHeader, .toolbar, .catalogSummary, .pagination {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pageHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 34px;
+}
+
+.kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px !important;
+    color: #6d7569;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+.kicker span { width: 7px; height: 7px; background: #65a30d; border-radius: 50%; }
+.pageHeader h1 { margin: 0; color: #20241f; font-family: var(--font-manrope), 'Manrope', sans-serif; font-size: clamp(30px, 4vw, 48px); font-weight: 800; letter-spacing: -.055em; }
+.intro { max-width: 520px; margin-top: 10px !important; color: #697066; font-size: 14px; line-height: 1.6; }
+.headerMark { padding: 12px 15px; border-left: 2px solid #b2e672; color: #879080; font-size: 10px; font-weight: 800; letter-spacing: .16em; line-height: 1.6; }
+
+.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px; border: 1px solid #e7eae3; background: #fff; box-shadow: 0 8px 24px rgba(40, 56, 32, .035); }
+.catalogSearch { display: flex; align-items: center; gap: 10px; flex: 1; max-width: 390px; color: #8d9688; }
+.catalogSearch input { width: 100%; border: 0; outline: 0; color: #252824; background: transparent; font: inherit; font-size: 13px; }
+.catalogSearch input::placeholder { color: #a6ada3; }
+.platformFilters { display: flex; gap: 4px; padding: 4px; background: #f0f2ed; }
+.platformFilters button { padding: 8px 12px; border: 0; color: #7c8578; background: transparent; font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
+.platformFilters button:hover, .platformFilters .filterActive { color: #365600; background: #fff; box-shadow: 0 2px 6px rgba(40, 56, 32, .08); }
+
+.catalogSummary { display: flex; align-items: center; justify-content: space-between; padding: 30px 2px 14px; color: #7b8378; font-size: 11px; }
+.catalogSummary strong { color: #2f4f00; font-size: 13px; }
+.liveStatus { display: flex; align-items: center; gap: 8px; color: #53614e; font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+.liveStatus i { width: 7px; height: 7px; border-radius: 50%; background: #65a30d; box-shadow: 0 0 0 3px #dff1bd; }
+
+.applicationGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.applicationCard { min-width: 0; border: 1px solid #e5e8e1; background: #fff; box-shadow: 0 8px 25px rgba(44, 56, 38, .04); animation: reveal .45s both; }
+.applicationCard:hover { border-color: #cbd8bc; box-shadow: 0 14px 30px rgba(44, 70, 24, .1); transform: translateY(-2px); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.cardTopline { display: flex; align-items: flex-start; justify-content: space-between; padding: 20px 20px 0; }
+.appIcon { display: grid; width: 58px; height: 58px; place-items: center; color: #eff8dc; border-radius: 14px 14px 14px 4px; font-family: var(--font-manrope), 'Manrope', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -.08em; }
+.appIcon1 { background: linear-gradient(145deg, #b2e672, #477313); }.appIcon2 { background: linear-gradient(145deg, #e5b45c, #713c1c); }.appIcon3 { background: linear-gradient(145deg, #5c6b73, #252934); }.appIcon4 { background: linear-gradient(145deg, #cfd5d0, #647066); }
+.statusBadge { padding: 5px 8px; font-size: 9px; font-weight: 800; letter-spacing: .08em; }.stable { color: #3d6500; background: #dff5b8; }.paused { color: #6f746c; background: #eceeea; }
+.cardBody { display: flex; min-height: 238px; flex-direction: column; padding: 22px 20px 20px; }
+.cardBody h2 { margin: 0; color: #2c302b; font-family: var(--font-manrope), 'Manrope', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -.04em; }
+.applicationCode { margin-top: 4px !important; color: #8a9186; font-family: var(--font-geist-mono), monospace; font-size: 10px; }
+.description { min-height: 42px; margin-top: 14px !important; color: #626b5e; font-size: 12px; line-height: 1.6; }
+.applicationDetails { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 22px; border-top: 1px solid #edf0eb; }.metaLabel { display: block; margin-bottom: 5px; color: #9aa297; font-size: 9px; font-weight: 800; letter-spacing: .08em; }.applicationDetails strong { display: block; max-width: 190px; overflow: hidden; color: #30352e; font-family: var(--font-geist-mono), monospace; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }.updatedAt { flex-shrink: 0; text-align: right; }.updatedAt time { color: #65705f; font-size: 10px; }
+.emptyState { padding: 70px 20px; border: 1px dashed #d5dbd1; text-align: center; }.emptyState i { color: #8baa64; font-size: 28px; }.emptyState h2 { margin: 12px 0 5px; font-family: var(--font-manrope), 'Manrope', sans-serif; font-size: 20px; }.emptyState p { color: #737c70; font-size: 13px; }
+.pagination { display: flex; align-items: center; justify-content: flex-end; gap: 14px; padding-top: 24px; color: #8a9287; font-size: 10px; font-weight: 800; letter-spacing: .08em; }.pagination strong { color: #406900; }.pagination button { width: 30px; height: 30px; border: 1px solid #dfe5da; color: #53614e; background: #fff; cursor: pointer; }.pagination button:hover:not(:disabled) { border-color: #9fc466; color: #315200; }.pagination button:disabled { color: #c4cac1; cursor: not-allowed; }
+@keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 900px) { .applicationGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .catalogPage { padding: 34px 16px; }.pageHeader { align-items: flex-start; }.headerMark { display: none; }.toolbar { align-items: stretch; flex-direction: column; }.catalogSearch { max-width: none; }.platformFilters { overflow-x: auto; }.platformFilters button { flex: 0 0 auto; }.applicationGrid { grid-template-columns: 1fr; }.catalogSummary { padding-top: 24px; }.cardBody { min-height: 220px; } }

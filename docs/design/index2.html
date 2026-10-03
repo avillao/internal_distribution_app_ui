@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Design System | Technical Pop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-highest": "#e2e2e2",
+            "primary-fixed": "#bef37d",
+            "on-primary": "#ffffff",
+            "outline": "#737968",
+            "on-secondary-container": "#775802",
+            "tertiary": "#ab304c",
+            "on-background": "#1a1c1c",
+            "surface-dim": "#dadada",
+            "on-secondary-fixed-variant": "#5b4300",
+            "on-error-container": "#93000a",
+            "secondary-container": "#fcd276",
+            "surface": "#f9f9f9",
+            "tertiary-fixed-dim": "#ffb2bb",
+            "surface-tint": "#406900",
+            "error-container": "#ffdad6",
+            "background": "#f9f9f9",
+            "on-primary-fixed-variant": "#2f4f00",
+            "on-surface": "#1a1c1c",
+            "inverse-surface": "#2f3131",
+            "primary-container": "#b2e672",
+            "surface-container-low": "#f3f3f4",
+            "on-secondary-fixed": "#261a00",
+            "outline-variant": "#c3c9b5",
+            "inverse-primary": "#a3d664",
+            "surface-variant": "#e2e2e2",
+            "surface-container": "#eeeeee",
+            "secondary-fixed-dim": "#eac167",
+            "on-tertiary-fixed-variant": "#8a1536",
+            "inverse-on-surface": "#f0f1f1",
+            "secondary-fixed": "#ffdf9e",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "primary": "#406900",
+            "on-tertiary-fixed": "#400012",
+            "error": "#ba1a1a",
+            "primary-fixed-dim": "#a3d664",
+            "on-primary-container": "#3f6700",
+            "tertiary-fixed": "#ffd9dd",
+            "surface-container-lowest": "#ffffff",
+            "on-error": "#ffffff",
+            "surface-bright": "#f9f9f9",
+            "on-primary-fixed": "#102000",
+            "secondary": "#785903",
+            "tertiary-container": "#ffc9cf",
+            "on-tertiary-container": "#a92e4a",
+            "on-surface-variant": "#43493a",
+            "surface-container-high": "#e8e8e8"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-effect {
+      backdrop-filter: blur(20px);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar Implementation -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm dark:shadow-none h-16 border-b border-zinc-100 dark:border-zinc-800">
+<div class="flex justify-between items-center px-6 h-full w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-zinc-900 dark:text-zinc-50 font-headline">Architectural Curator</span>
+<div class="hidden md:flex items-center bg-zinc-100 dark:bg-zinc-800 px-4 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-zinc-500 text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64 text-zinc-900 font-body" placeholder="Search components..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-zinc-500">notifications</span>
+</button>
+<button class="p-2 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-zinc-500">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container overflow-hidden ml-2">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Portrait of a software architect in high-key professional lighting with a clean studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJTqGzo1ahp_lJdAXr6rOEcrWkphYBg9RUdDFbf3pHNWNGxoO2PhZ9y_alSAApumztIvlQMRbFJdUKNqMokKx5uRf4arnAFXjIlRRpyqKrqS7u2TJUcABpJU7GrpDDC4uR_4ZEPFD-tOKNMF0EO8MKoHIOoFyBkwU0bOcn6eey2eLarjYF8N5LVus_9m9WTLrH0JhBmsZAMRU-OhK7-8uzIwriTUbz6NzuLIUOe5Cm5X_YIhEI79G4d6IAVeVkjGRYnhUPkyNjVkUS"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar Implementation -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-20 bg-zinc-50 dark:bg-zinc-900 z-40 hidden md:block">
+<div class="flex flex-col gap-2 p-4 h-full">
+<div class="px-4 mb-4">
+<h2 class="text-lg font-black text-zinc-900 dark:text-zinc-100 font-headline">Technical Pop</h2>
+<span class="text-[11px] text-zinc-500 uppercase tracking-widest font-label">v2.4.0</span>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-sm font-medium font-headline text-zinc-900 dark:text-zinc-50 border-r-4 border-lime-400 bg-white dark:bg-zinc-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">apps</span> App Management
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm font-medium font-headline text-zinc-500 dark:text-zinc-400 hover:text-lime-600 dark:hover:text-lime-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">terminal</span> Release Console
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm font-medium font-headline text-zinc-500 dark:text-zinc-400 hover:text-lime-600 dark:hover:text-lime-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">history</span> Audit Logs
+        </a>
+</nav>
+<div class="mt-auto pb-8">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-3 rounded-xl shadow-sm hover:opacity-90 transition-opacity active:scale-95 duration-200">
+          Submit New App
+        </button>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:pl-64 pt-24 pb-20 px-6 max-w-7xl mx-auto">
+<!-- Hero Section / Header -->
+<section class="mb-12">
+<h1 class="text-5xl font-extrabold font-headline tracking-tighter text-on-surface mb-2">Registry Style Guide</h1>
+<p class="text-on-surface-variant max-w-2xl text-lg">Visual tokens and component architecture for the Technical Pop ecosystem. A balance of technical precision and editorial energy.</p>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Typography & Colors -->
+<section class="lg:col-span-8 space-y-8">
+<div class="bg-surface-container-lowest rounded-xl p-8">
+<h3 class="text-xl font-bold font-headline mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">palette</span> Typography &amp; Color System
+          </h3>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+<div class="space-y-2">
+<div class="h-24 w-full bg-primary-container rounded-xl flex items-end p-3">
+<span class="text-on-primary-container font-mono text-[10px] font-bold">#B2E672</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-wider">Primary Active</p>
+</div>
+<div class="space-y-2">
+<div class="h-24 w-full bg-secondary-container rounded-xl flex items-end p-3">
+<span class="text-on-secondary-container font-mono text-[10px] font-bold">#FCD276</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-wider">Warning/Pending</p>
+</div>
+<div class="space-y-2">
+<div class="h-24 w-full bg-tertiary-container rounded-xl flex items-end p-3">
+<span class="text-on-tertiary-container font-mono text-[10px] font-bold">#FFC9CF</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-wider">Critical/Error</p>
+</div>
+<div class="space-y-2">
+<div class="h-24 w-full bg-surface-container-high rounded-xl flex items-end p-3">
+<span class="text-on-surface-variant font-mono text-[10px] font-bold">#E8E8E8</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-wider">Inactive/Ghost</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-baseline justify-between border-b border-surface-container pb-2">
+<span class="text-4xl font-extrabold font-headline tracking-tight">Manrope Bold</span>
+<span class="text-on-surface-variant text-sm">Display Large</span>
+</div>
+<div class="flex items-baseline justify-between border-b border-surface-container pb-2">
+<span class="text-xl font-semibold font-headline">Editorial Utility Interface</span>
+<span class="text-on-surface-variant text-sm">Headline Medium</span>
+</div>
+<div class="flex items-baseline justify-between border-b border-surface-container pb-2">
+<span class="text-base font-body">Monospace technical data strings v2.0.4</span>
+<span class="text-on-surface-variant text-sm">Body Medium (Inter)</span>
+</div>
+</div>
+</div>
+<!-- Buttons & Actions -->
+<div class="bg-surface-container-lowest rounded-xl p-8">
+<h3 class="text-xl font-bold font-headline mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">touch_app</span> Buttons &amp; Actions
+          </h3>
+<div class="flex flex-wrap gap-4 items-center">
+<button class="px-6 py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-xl shadow-sm hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">add</span> Submit New App
+            </button>
+<button class="px-6 py-3 bg-surface-container-high text-primary font-bold rounded-xl hover:bg-surface-container-highest transition-colors">
+              Secondary Action
+            </button>
+<button class="px-6 py-3 border-2 border-outline-variant text-on-surface font-semibold rounded-xl hover:bg-surface-container-low transition-colors">
+              Outline
+            </button>
+<button class="px-6 py-3 text-primary font-bold hover:bg-primary-container/10 rounded-xl transition-colors">
+              Ghost Button
+            </button>
+</div>
+</div>
+<!-- Form Elements -->
+<div class="bg-surface-container-lowest rounded-xl p-8">
+<h3 class="text-xl font-bold font-headline mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">edit_note</span> Form Elements
+          </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="space-y-1.5">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">App Bundle Identifier</label>
+<input class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-on-surface-variant/50" placeholder="com.architect.curator" type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container p-1 rounded-xl flex">
+<button class="px-4 py-2 bg-surface-container-lowest shadow-sm rounded-lg text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">phone_iphone</span> iOS
+                  </button>
+<button class="px-4 py-2 text-on-surface-variant text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">phone_android</span> Android
+                  </button>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold rounded-full uppercase">Prod</span>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-full uppercase">Beta</span>
+</div>
+</div>
+</div>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center text-center hover:bg-surface-container-low transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-3xl text-outline-variant group-hover:text-primary transition-colors mb-2">cloud_upload</span>
+<p class="text-sm font-bold">Drag &amp; Drop Binary</p>
+<p class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-tight">Support for .ipa, .apk, .aab</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar Components: Data Display & Cards -->
+<section class="lg:col-span-4 space-y-8">
+<!-- Data Display & Badges -->
+<div class="bg-surface-container-lowest rounded-xl p-8">
+<h3 class="text-xl font-bold font-headline mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span> Data Status
+          </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<span class="text-sm font-semibold">Build Version</span>
+<span class="font-mono text-xs font-bold text-primary">v2.40.12-rc</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<span class="text-sm font-semibold">Platform Status</span>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold rounded-full">ACTIVE</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<span class="text-sm font-semibold">Memory Usage</span>
+<div class="w-24 bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<span class="text-sm font-semibold">Legacy Support</span>
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold rounded-full">DEPRECATED</span>
+</div>
+</div>
+</div>
+<!-- Cards & Containers -->
+<div class="space-y-6">
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant px-2">Card Architecture</h3>
+<!-- App Card Example -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="h-32 bg-zinc-900 relative">
+<img alt="App Banner" class="w-full h-full object-cover opacity-60" data-alt="Abstract vibrant lime and dark green gradient with geometric architectural shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv7S1GSnFroieMxnjoZkQvLP3QdKVJVA8JxMEPSEJA91prupIV2h_la6ImzKWMaa5wyK0_aa6aMxIMDOJ2butQIckJkrwfe6oTtf6rnaCtYxW_wS6Fy17IMO-QL8xoY-PMzDzVYDYO_jIz3LZ5eYiF90_JqVU9GAeLhHIUDNo9L9pH9aO1krdRxg8X9Y0nBi90bE0OywW3JG-Yoyhcxa9FLvWCQGJ1akXNg8mCb7lb1SMwpUSZPWZvX6R02TwdjbX7-NZnKM_FgV57"/>
+<div class="absolute bottom-4 left-4 flex items-center gap-3">
+<div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<div>
+<h4 class="text-white font-bold font-headline">Site Monitor</h4>
+<p class="text-white/70 text-[10px] uppercase font-bold tracking-wider">System Utility</p>
+</div>
+</div>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex gap-2">
+<span class="bg-surface-container px-2 py-0.5 rounded text-[10px] font-mono">12.4 MB</span>
+<span class="bg-surface-container px-2 py-0.5 rounded text-[10px] font-mono">ARM64</span>
+</div>
+<button class="w-full py-2 bg-surface-container text-primary font-bold text-xs rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors">
+                View Repository
+              </button>
+</div>
+</div>
+<!-- Testing Access Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-sm">Testing Access</h4>
+<p class="text-xs text-on-surface-variant">Manage external QA members</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">group</span>
+</div>
+<div class="flex -space-x-2 overflow-hidden">
+<img alt="QA 1" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" data-alt="Close-up portrait of a woman with a friendly expression in natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVhPA4PDLQ3-a3qKUgLJ-iUj5VhF2qXrKBrbGSCw4xvG9_YVg4EAClIKyYycnf4UNYYPGouRMeNFAytdK1ox4yqF6vrd1EuIa7d0lfXYGgNnNQed2sFngH39CY9pwubC2CsfI1Elqkqvdx-4r2Aen010slQ_BXr2dCeP_kBfqrIMuixpWJBcIyctO1A0s1B5Tq1o8pbsVxavfsKrTf1TjRbL7sUWoSv4M1NeVC74hf7DPV0ps16zukQ59YsIkL4f-0MV4svVrbmuPH"/>
+<img alt="QA 2" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" data-alt="Portrait of a male developer with glasses in a soft-focus office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjILqNNs8i56yTFKHzoTE_oaCsb_1kfoSocx9hSV-CuM2sDuWUToCN0H1sq0vdv4rLlZYamgFYnKo1wqD6If8HBjoAwquC1FezgkDYo5PiW6QMScLJD3rCgdxFBov8Evg056FDfalsaLXoMtWDQMZJz3M3FnL70IvkjtYsnUuVTwdwlIlyoGRBGxCB0ur0-QeBcYd3blBW7DLYXcGa5ujCFxSVTZ2wMxkZykUYJ8QhIEoH5wu3QdE4FEKVblGq4FJ3x11vu8e_vR_Y"/>
+<img alt="QA 3" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" data-alt="Candid portrait of a young professional smiling in a bright studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPMq0VWS_KLKS8gSXhFOlDau-L7r9RckqlnrFwX0Hbr92wZyHp1Zs7MOwm38XmwY98bujrH9riBRbo5_cH9i51G-30MYyeVaRxOwva-FfOZXDKH35vpbgq5kQblzMwT9leJ7WfbA02dJXbB_ii3b8NFWJXGkUOU_S41e3qhoDJnnultZPeuJNxYHohCULwecsm-LxliUXepSvQlpUj84fwmdv2Qcmo2KYur9c4AWPKPhNq0I149ODxSRsrol85qFamTy-XBoqkN11A"/>
+<div class="inline-block h-8 w-8 rounded-full bg-surface-container ring-2 ring-white flex items-center justify-center text-[10px] font-bold text-on-surface-variant">
+                +12
+              </div>
+</div>
+<div class="pt-2 border-t border-surface-container">
+<button class="text-primary font-bold text-[11px] uppercase tracking-wider flex items-center gap-1">
+                Revoke Permissions <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Implementation -->
+<footer class="fixed bottom-0 w-full h-8 flex justify-between items-center px-6 z-40 bg-zinc-50/50 dark:bg-zinc-900/50 backdrop-blur-sm border-t border-zinc-100 dark:border-zinc-800">
+<div class="flex gap-4">
+<a class="font-['Inter'] text-[11px] uppercase tracking-widest text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100" href="#">Documentation</a>
+<a class="font-['Inter'] text-[11px] uppercase tracking-widest text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100" href="#">API Status</a>
+<a class="font-['Inter'] text-[11px] uppercase tracking-widest text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100" href="#">Support</a>
+</div>
+<div class="font-['Inter'] text-[11px] uppercase tracking-widest text-zinc-400">
+      System Status: <span class="text-lime-500 font-bold">Healthy</span> | Environment: Production
+    </div>
+</footer>
+</body></html>

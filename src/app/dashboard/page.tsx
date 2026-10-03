@@ -1,21 +1,46 @@
-import { redirect } from "next/navigation";
-import { jwtDecode } from "jwt-decode";
-import { AuthToken } from "./layout";
-import { cookies } from "next/headers";
+"use client";
 
-export default async function DashboardHome() {
-    const token = (await cookies()).get('access_token')?.value
-    const user = jwtDecode<AuthToken>(token || "{}");
-    const roles = user.resource_access["internal_distribution_app"].roles;
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import useAuth from "@/features/auth/hooks/useAuth";
+import useStore from "@/shared/hooks/useStore";
 
-    const isAdmin = roles.includes("admin");
-    const isUser = roles.find((rol)=>rol.startsWith("user_")) != undefined;
+export default function DashboardHome() {
+    const router = useRouter();
+    const { me, isLoading } = useAuth();
+    const isAuthenticated = useStore((state)=> state.isAuthenticated);
+    const roles = useStore((state)=> state.roles);
 
-    if (isAdmin) {
-        redirect("/dashboard/admin");
-    } else if (isUser) {
-        redirect("/dashboard/catalogo");
-    } else {
-        redirect("/login");
-    }
+    useEffect(() => {
+        me().then().catch();
+    }, []);
+
+    useEffect(() => {
+        console.log("isLoading", `${isLoading}`)
+        if (isLoading) {
+            return;
+        }
+
+        console.log("isAuthenticated", `${isAuthenticated}`)
+        if (!isAuthenticated) {
+            router.replace("/login");
+            return;
+        }
+
+        console.log("roles", roles)
+        if (roles.includes("admin")) {
+            router.replace("/dashboard/admin");
+            return;
+        }
+
+        if (roles.some(role => role.startsWith("user_"))) {
+            router.replace("/dashboard/catalogo");
+            return;
+        }
+
+        router.replace("/login");
+
+    }, [isLoading, roles, router]);
+
+    return <div />;
 }
