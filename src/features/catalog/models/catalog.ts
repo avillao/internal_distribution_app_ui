@@ -16,6 +16,14 @@ export interface ApplicationDetail extends Application {
     platforms: ArtifactPlatform[];
 }
 
+export interface BinaryDetail {
+    filename: string;
+    type: string;
+    filesize: number;
+    keypath: string;
+    url: string;
+}
+
 export interface Artifact {
     resourceApplicationCode: string;
     artifactId: string;
@@ -26,11 +34,12 @@ export interface Artifact {
     enabled: boolean;
     created: string;
     updated: string;
+    binaryDetail?: BinaryDetail;
     downloadUrl?: string;
 }
 
 export interface CatalogApplication extends Application {
     branches: ArtifactBranch[];
     platforms: ArtifactPlatform[];
-    artifacts: Artifact[];
+    artifacts?: Artifact[];
 }

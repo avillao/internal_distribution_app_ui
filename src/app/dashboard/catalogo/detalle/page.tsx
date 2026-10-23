@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import ApplicationDetail from "@/features/catalog/components/applicationDetail";
 import { fetchCatalogApplication } from "@/features/catalog/services/catalogClient";
 import type { CatalogApplication } from "@/features/catalog/models/catalog";
 
-export default function ApplicationDetailPage() {
+function ApplicationDetailContent() {
     const searchParams = useSearchParams();
     const applicationCode = searchParams.get("applicationCode");
     const [application, setApplication] = useState<CatalogApplication>();
@@ -26,4 +26,12 @@ export default function ApplicationDetailPage() {
     if (error) return <div>{error}</div>;
     if (!application) return <div>Cargando aplicación...</div>;
     return <ApplicationDetail application={application} />;
+}
+
+export default function ApplicationDetailPage() {
+    return (
+        <Suspense fallback={<div>Cargando aplicación...</div>}>
+            <ApplicationDetailContent />
+        </Suspense>
+    );
 }

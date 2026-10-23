@@ -48,7 +48,8 @@ export async function getApplicationDetail(applicationCode: string): Promise<App
 
 export async function getLatestArtifact(applicationCode: string, platform: ArtifactPlatform, branch: ArtifactBranch): Promise<Artifact> {
     const artifact = await bffGet<Omit<Artifact, "branch"> & { branch: string }>(`/api/application/${encodeURIComponent(`${applicationCode}.${platform}.${apiBranch(branch)}`)}/artifact/latest`);
-    return { ...artifact, branch: normalizeBranch(artifact.branch), downloadUrl: `/mock-downloads/${artifact.artifactId}` };
+    const downloadUrl = artifact.binaryDetail?.url ?? artifact.downloadUrl;
+    return { ...artifact, branch: normalizeBranch(artifact.branch), downloadUrl };
 }
 
 export async function getCatalogApplications(): Promise<Application[]> {
@@ -57,14 +58,5 @@ export async function getCatalogApplications(): Promise<Application[]> {
 
 export async function getCatalogApplication(applicationCode: string): Promise<CatalogApplication> {
     const detail = await getApplicationDetail(applicationCode);
-    const combinations = detail.platforms.flatMap((platform) => detail.branches.map((branch) => ({ platform, branch })));
-    const artifacts = await Promise.all(combinations.map(async ({ platform, branch }) => {
-        try {
-            return await getLatestArtifact(applicationCode, platform, branch);
-        } catch {
-            return null;
-        }
-    }));
-
-    return { ...detail, artifacts: artifacts.filter((artifact): artifact is Artifact => artifact !== null) };
+    return { ...detail };
 }

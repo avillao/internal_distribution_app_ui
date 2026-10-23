@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import type { ArtifactPlatform, CatalogApplication } from "../models/catalog";
+import { useEffect, useState } from "react";
+import type { Artifact, ArtifactBranch, ArtifactPlatform, CatalogApplication } from "../models/catalog";
+import { fetchLatestArtifact } from "../services/catalogClient";
+import useStore from "@/shared/hooks/useStore";
+import { getAccessibleBranches, hasApplicationPermission, type BranchPermission } from "@/shared/utils/roles";
 import Styles from "../styles/application-detail.module.css";
 
 const platformLabels: Record<ArtifactPlatform, string> = {
@@ -18,20 +21,56 @@ function getPlatformIcon(platform: ArtifactPlatform) {
     return platform === "android" ? "bi-android2" : "bi-apple";
 }
 
+function branchToPermission(branch: ArtifactBranch): BranchPermission {
+    return branch === "prod" ? "prd" : "qa";
+}
+
 export default function ApplicationDetail({ application }: { application: CatalogApplication }) {
+    const roles = useStore((state) => state.roles);
+    const accessibleBranches = getAccessibleBranches(roles, application.applicationCode).map((branch) => (branch === "prd" ? "prod" : branch)) as ArtifactBranch[];
+    const filteredBranches = accessibleBranches.filter((branch) => application.branches.includes(branch as ArtifactBranch));
+    const branches = filteredBranches.length > 0 ? filteredBranches : application.branches;
     const availablePlatforms = application.platforms;
     const initialPlatform = availablePlatforms.includes("android") ? "android" : availablePlatforms[0];
     const [platform, setPlatform] = useState<ArtifactPlatform>(initialPlatform);
-    const platformArtifacts = application.artifacts.filter((artifact) => artifact.platform === platform);
-    const branches = application.branches;
-    const [branch, setBranch] = useState(branches.includes("prod") ? "prod" : branches[0]);
-    const selectedArtifact = platformArtifacts.find((artifact) => artifact.branch === branch);
+    const [branch, setBranch] = useState<ArtifactBranch>(branches.includes("prod") ? "prod" : branches[0]);
+    const [selectedArtifact, setSelectedArtifact] = useState<Artifact | null>(null);
+    const [loadingArtifact, setLoadingArtifact] = useState(false);
+    const [artifactError, setArtifactError] = useState<string | undefined>(undefined);
     const canDownload = application.enabled && selectedArtifact?.enabled === true && Boolean(selectedArtifact.downloadUrl);
 
     function changePlatform(nextPlatform: ArtifactPlatform) {
         setPlatform(nextPlatform);
-        setBranch(application.branches.includes("prod") ? "prod" : application.branches[0]);
+        const nextBranches = getAccessibleBranches(roles, application.applicationCode)
+            .map((b) => (b === "prd" ? "prod" : (b as ArtifactBranch)))
+            .filter((b) => application.branches.includes(b));
+        const fallbackBranches = nextBranches.length > 0 ? nextBranches : application.branches;
+        setBranch(fallbackBranches.includes("prod") ? "prod" : (fallbackBranches[0] as ArtifactBranch));
     }
+
+    useEffect(() => {
+        setArtifactError(undefined);
+        setSelectedArtifact(null);
+        if (!application.applicationCode) return;
+        const permissionBranch = branchToPermission(branch);
+        if (!hasApplicationPermission(roles, application.applicationCode, permissionBranch)) {
+            setArtifactError("No tienes permisos para consultar este artefacto");
+            setLoadingArtifact(false);
+            return;
+        }
+        setLoadingArtifact(true);
+        fetchLatestArtifact(application.applicationCode, platform, branch)
+            .then((artifact) => {
+                setSelectedArtifact(artifact);
+            })
+            .catch((error: unknown) => {
+                setArtifactError(error instanceof Error ? error.message : "No se pudo obtener la versión disponible");
+                setSelectedArtifact(null);
+            })
+            .finally(() => {
+                setLoadingArtifact(false);
+            });
+    }, [application.applicationCode, platform, branch, roles]);
 
     return (
         <main className={Styles.detailPage}>
@@ -91,15 +130,25 @@ export default function ApplicationDetail({ application }: { application: Catalo
                         <div className={Styles.resultIcon}><i className={`bi ${getPlatformIcon(platform)}`} aria-hidden="true" /></div>
                         <div className={Styles.resultInfo}>
                             <span className={Styles.resultLabel}>VERSIÓN SELECCIONADA</span>
-                            <strong>{selectedArtifact ? `v${selectedArtifact.version}` : "Sin versión"}</strong>
-                            <span>{selectedArtifact ? `${platformLabels[selectedArtifact.platform]} · rama ${selectedArtifact.branch}` : "No hay un artifact para esta combinación"}</span>
+                            <strong>{loadingArtifact ? "Cargando..." : selectedArtifact ? `v${selectedArtifact.version}` : "Sin versión"}</strong>
+                            <span>
+                                {loadingArtifact
+                                    ? "Consultando último artefacto..."
+                                    : artifactError
+                                        ? artifactError
+                                        : selectedArtifact
+                                            ? `${platformLabels[selectedArtifact.platform]} · rama ${selectedArtifact.branch}`
+                                            : "No hay un artifact para esta combinación"}
+                            </span>
                         </div>
                         {canDownload ? (
                             <a className={Styles.downloadButton} href={selectedArtifact.downloadUrl} download>
                                 Descargar <i className="bi bi-download" aria-hidden="true" />
                             </a>
                         ) : (
-                            <button className={Styles.downloadButton} disabled type="button">No disponible</button>
+                            <button className={Styles.downloadButton} disabled type="button">
+                                {loadingArtifact ? "Cargando..." : "No disponible"}
+                            </button>
                         )}
                     </div>
                     {!application.enabled && <p className={Styles.notice}><i className="bi bi-info-circle" aria-hidden="true" /> Esta aplicación está pausada y no admite descargas.</p>}

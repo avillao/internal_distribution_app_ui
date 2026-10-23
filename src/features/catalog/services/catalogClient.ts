@@ -29,20 +29,13 @@ export async function fetchApplicationDetail(applicationCode: string): Promise<A
 
 export async function fetchLatestArtifact(applicationCode: string, platform: ArtifactPlatform, branch: ArtifactBranch): Promise<Artifact> {
     const apiBranch = branch === "prod" ? "prd" : branch;
-    const artifact = bffData<Omit<Artifact, "branch"> & { branch: string }>(await authClient.get(`/api/application/${encodeURIComponent(`${applicationCode}.${platform}.${apiBranch}`)}/artifact/latest`));
-    return { ...artifact, branch: normalizeBranch(artifact.branch), downloadUrl: `/mock-downloads/${artifact.artifactId}` };
+    const resourceApplicationCode = `${applicationCode}.${platform}.${apiBranch}`;
+    const artifact = bffData<Omit<Artifact, "branch"> & { branch: string }>(await authClient.get(`/api/application/${encodeURIComponent(resourceApplicationCode)}/artifact/latest`));
+    const downloadUrl = artifact.binaryDetail?.url ?? artifact.downloadUrl;
+    return { ...artifact, branch: normalizeBranch(artifact.branch), downloadUrl };
 }
 
 export async function fetchCatalogApplication(applicationCode: string): Promise<CatalogApplication> {
     const detail = await fetchApplicationDetail(applicationCode);
-    const combinations = detail.platforms.flatMap((platform) => detail.branches.map((branch) => ({ platform, branch })));
-    const artifacts = await Promise.all(combinations.map(async ({ platform, branch }) => {
-        try {
-            return await fetchLatestArtifact(applicationCode, platform, branch);
-        } catch {
-            return null;
-        }
-    }));
-
-    return { ...detail, artifacts: artifacts.filter((artifact): artifact is Artifact => artifact !== null) };
+    return { ...detail };
 }
